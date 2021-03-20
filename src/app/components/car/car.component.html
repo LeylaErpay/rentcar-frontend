@@ -1,7 +1,10 @@
-<table class="table table-striped">
-    <thead>
+<div *ngIf="dataLoaded == false" class="spinner-border text-danger" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+<table *ngIf="dataLoaded != false" class="table table-hover table-bordered">
+  <thead>
       <tr>
-        <th>Id</th>
+        <th>car.Id</th>
         <th>Brand Name</th>
         <th>Model Name</th>
         <th>Model Year</th>
@@ -12,7 +15,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let car of cars">
-        <td>{{ car.Id }}</td>
+        <td>{{ car.carId }}</td>
         <td>{{ car.brandName }}</td>
         <td>{{ car.modelName }}</td>
         <td>{{ car.modelYear }}</td>
@@ -22,3 +25,4 @@
       </tr>
     </tbody>
   </table>
+

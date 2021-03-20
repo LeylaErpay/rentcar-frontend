@@ -1,0 +1,10 @@
+<ul class="list-group">
+    <li  [class]="getAllModelClass()" routerLink = "/cars">Tüm Ürünler</li>
+    <li (click)="setCurrentModel(model)"
+    routerLink = "/cars/model/{{model.modelId}}"
+    *ngFor="let model of models" 
+    [class]="getCurrentModelClass(model)">
+    {{model.modelName}}</li>
+  </ul>
+  
+  
