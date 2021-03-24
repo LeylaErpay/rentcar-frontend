@@ -9,8 +9,10 @@ import { ColorService } from 'src/app/services/color.service';
 })
 export class ColorComponent implements OnInit {
   colors: Color[] = [];
-  currentColor :Color;
-  //defaultColor: Color = { colorId:1, colorName: 'default' };
+  currentColor :Color = {colorId:-1,colorName:""};
+  dataLoaded = false;
+  filterText:String;
+  
 
   constructor(private colorService: ColorService) {}
 
@@ -21,6 +23,7 @@ export class ColorComponent implements OnInit {
   getColors() {
     this.colorService.getColors().subscribe((response: { data: Color[]; }) => {
       this.colors = response.data;
+      this.dataLoaded = true;
     });
   }
 
@@ -38,13 +41,17 @@ export class ColorComponent implements OnInit {
     }
   }
 
-  getAllColorClass(){
-    if(!this.currentColor){
-      return "list-group-item active"
-     }
-     else{
+  getAllCurrentColorClass(){
+    let defaultColor:Color = {colorId:-1,colorName:""};
+    if(this.currentColor.colorId == defaultColor.colorId){
+      return "list-group-item active";
+    } else {
       return "list-group-item"
-     }
+    }
+  }
+  removeCurrentColor(){
+    this.filterText = "";
+    this.currentColor={colorId:-1,colorName:""};
   }
 
 }
